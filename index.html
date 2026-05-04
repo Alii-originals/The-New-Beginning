@@ -55,23 +55,23 @@ html[data-theme="theme-dark"]{
 }
 
 html[data-theme="theme-minimal"]{
-  --bgTop:#0a0a0a;
-  --bgMid:#080808;
-  --bgBottom:#050505;
+  --bgTop:#6f8faa;
+  --bgMid:#5f7f99;
+  --bgBottom:#4d6b84;
 
-  --text:rgba(255,255,255,0.92);
-  --muted:rgba(255,255,255,0.64);
-  --muted2:rgba(255,255,255,0.50);
+  --text:rgba(255,255,255,0.94);
+  --muted:rgba(255,255,255,0.72);
+  --muted2:rgba(255,255,255,0.58);
 
-  --panel:rgba(255,255,255,0.06);
-  --panelBorder:rgba(255,255,255,0.10);
+  --panel:rgba(255,255,255,0.16);
+  --panelBorder:rgba(255,255,255,0.20);
   --edge:transparent;
 
-  --quoteColor:rgba(255,255,255,0.62);
+  --quoteColor:rgba(255,255,255,0.74);
 
-  --themeBtnBg:rgba(255,255,255,0.08);
-  --themeBtnBorder:rgba(255,255,255,0.16);
-  --themeBtnText:rgba(255,255,255,0.86);
+  --themeBtnBg:rgba(255,255,255,0.18);
+  --themeBtnBorder:rgba(255,255,255,0.28);
+  --themeBtnText:rgba(255,255,255,0.92);
 }
 
 *{
@@ -258,7 +258,7 @@ html[data-theme="theme-minimal"] .slot svg.ring{
 
 html[data-theme="theme-minimal"] .slot .ring-bg{
   fill:none;
-  stroke:rgba(255,255,255,0.06);
+  stroke:rgba(255,255,255,0.16);
   stroke-width:4;
 }
 
@@ -281,20 +281,20 @@ html[data-theme="theme-minimal"] .slot::after{
   aspect-ratio:1/1;
   transform:translateX(-50%);
   border-radius:50%;
-  border:8px solid rgba(255,255,255,0.06);
+  border:8px solid rgba(255,255,255,0.12);
 }
 
 html[data-theme="theme-minimal"] .digit{
   font-weight:300;
   font-size:clamp(3rem, 5.3vw, 4rem);
   letter-spacing:-2px;
-  color:rgba(255,255,255,0.92);
+  color:rgba(255,255,255,0.95);
   margin-top:0;
 }
 
 html[data-theme="theme-minimal"] .tag{
   margin-top:16px;
-  color:rgba(255,255,255,0.50);
+  color:rgba(255,255,255,0.70);
   font-size:clamp(0.95rem, 1.6vw, 1.15rem);
   font-weight:300;
   letter-spacing:0;
@@ -431,7 +431,7 @@ html[data-theme="theme-minimal"] .tag{
 
 <div class="container">
 
-<button class="theme-toggle" id="themeToggle" type="button">Theme: Void</button>
+<button class="theme-toggle" id="themeToggle" type="button">Theme: Dark</button>
 
 <div class="quote">
 اللَّهُمَّ إِنِّي قَدْ ارْتَكَبْتُ ذُنُوبًا عَظِيمَةً<br>
@@ -502,8 +502,8 @@ const startTime = Date.UTC(2026,3,15,14,50,0);
 const CIRCUMFERENCE = 2 * Math.PI * 42;
 
 const themes = [
-  { key: "theme-dark", label: "Void" },
-  { key: "theme-minimal", label: "Ember" }
+  { key: "theme-dark", label: "Dark" },
+  { key: "theme-minimal", label: "Minimal" }
 ];
 
 const themeToggle = document.getElementById("themeToggle");
