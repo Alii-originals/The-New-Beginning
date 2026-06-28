@@ -1,4 +1,4 @@
-const CACHE_NAME = "the-new-beginning-v1";
+const CACHE_NAME = "tnb-v2";
 
 const FILES_TO_CACHE = [
   "./",
