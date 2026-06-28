@@ -1,6 +1,6 @@
 {
-  "name": "The New Beginning",
-  "short_name": "Beginning",
+  "name": "TNB",
+  "short_name": "TNB",
   "description": "The New Beginning Timer",
   "start_url": "./",
   "scope": "./",
