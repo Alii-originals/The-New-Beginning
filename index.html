@@ -14,11 +14,9 @@
 <style>
 :root{
   --bg:#000000;
-
   --text:#ffffff;
   --muted:rgba(255,255,255,0.72);
   --muted2:rgba(255,255,255,0.52);
-
   --panel:rgba(255,255,255,0.035);
   --panelBorder:rgba(255,255,255,0.14);
   --edge:rgba(255,255,255,0.18);
@@ -32,7 +30,8 @@
   box-sizing:border-box;
 }
 
-html, body{
+html,
+body{
   width:100%;
   max-width:100%;
   overflow-x:hidden;
@@ -59,37 +58,19 @@ body{
   z-index:1;
 }
 
+/* TITLE */
 h1{
   margin:0 0 20px;
   font-family:var(--titleFont);
   font-weight:400;
-  font-size:clamp(2.8rem,8vw,4.4rem);
+  font-size:clamp(2rem,5vw,2.8rem);
   line-height:1;
-  letter-spacing:-1px;
+  letter-spacing:-0.5px;
   text-transform:uppercase;
   color:#fff;
-  position:relative;
 }
 
-/*
-  Subtle distressed treatment inspired by the supplied reference.
-  The text remains readable if background-clip is unsupported.
-*/
-@supports ((-webkit-background-clip:text) or (background-clip:text)){
-  h1,
-  .digit{
-    background:
-      radial-gradient(circle at 15% 25%, transparent 0 1px, #fff 1.5px 100%),
-      radial-gradient(circle at 72% 68%, rgba(0,0,0,.35) 0 1px, transparent 1.5px),
-      #fff;
-    background-size:13px 17px,19px 23px,auto;
-    -webkit-background-clip:text;
-    background-clip:text;
-    -webkit-text-fill-color:transparent;
-    color:transparent;
-  }
-}
-
+/* START DATE + WORLD CLOCKS */
 .start-card{
   margin:0 auto 16px;
   width:min(720px,92vw);
@@ -120,6 +101,7 @@ h1{
   text-align:center;
 }
 
+/* TIMER */
 .scoreboard{
   margin-top:24px;
   border:1px solid var(--edge);
@@ -142,15 +124,66 @@ h1{
   border-left:1px solid rgba(255,255,255,0.10);
 }
 
+/*
+  DISTRESSED NUMBERS
+
+  Mostly white with only a few soft,
+  irregular dark worn areas.
+*/
 .digit{
-  font-size:clamp(3rem,8vw,5rem);
+  font-size:clamp(3.5rem,9vw,5.8rem);
   font-weight:400;
-  line-height:1;
+  line-height:0.95;
   overflow-wrap:anywhere;
   font-family:var(--digitFont);
   position:relative;
   z-index:2;
-  letter-spacing:-1px;
+  letter-spacing:-2px;
+
+  color:#fff;
+
+  background:
+    radial-gradient(
+      ellipse 24% 9% at 18% 82%,
+      rgba(0,0,0,.78) 0%,
+      rgba(0,0,0,.52) 35%,
+      rgba(0,0,0,.18) 60%,
+      transparent 72%
+    ),
+
+    radial-gradient(
+      ellipse 18% 7% at 74% 24%,
+      rgba(0,0,0,.62) 0%,
+      rgba(0,0,0,.34) 42%,
+      transparent 72%
+    ),
+
+    radial-gradient(
+      ellipse 28% 6% at 62% 68%,
+      rgba(0,0,0,.50) 0%,
+      rgba(0,0,0,.24) 45%,
+      transparent 75%
+    ),
+
+    radial-gradient(
+      ellipse 12% 5% at 35% 38%,
+      rgba(0,0,0,.45) 0%,
+      rgba(0,0,0,.20) 45%,
+      transparent 75%
+    ),
+
+    linear-gradient(
+      90deg,
+      #f7f7f7 0%,
+      #ffffff 25%,
+      #eeeeee 48%,
+      #ffffff 70%,
+      #f4f4f4 100%
+    );
+
+  -webkit-background-clip:text;
+  background-clip:text;
+  -webkit-text-fill-color:transparent;
 }
 
 .tag{
@@ -164,8 +197,7 @@ h1{
   text-transform:uppercase;
 }
 
-/* Existing ring elements are retained to preserve structure,
-   but hidden because the single requested theme does not use them. */
+/* Original ring structure retained */
 .slot svg.ring{
   display:none;
 }
@@ -174,8 +206,9 @@ h1{
   content:none;
 }
 
-/* Mobile */
+/* TABLET / MOBILE */
 @media (max-width:768px){
+
   body{
     align-items:flex-start;
     padding:18px 0 28px;
@@ -187,7 +220,7 @@ h1{
   }
 
   h1{
-    font-size:clamp(2.7rem,13vw,4.2rem);
+    font-size:clamp(1.9rem,8vw,2.6rem);
     margin-bottom:20px;
   }
 
@@ -229,13 +262,15 @@ h1{
   }
 }
 
+/* SMALL PHONES */
 @media (max-width:420px){
+
   .container{
     padding:30px 8px 28px;
   }
 
   h1{
-    font-size:clamp(2.5rem,14vw,3.7rem);
+    font-size:clamp(1.8rem,9vw,2.4rem);
   }
 
   .start{
@@ -264,58 +299,84 @@ h1{
   <h1>The New Beginning</h1>
 
   <div class="start-card">
+
     <div class="start">
       Start Date and Time (Manchester, UK):<br>
       <strong id="startDisplay">--</strong>
     </div>
 
     <div class="now-list">
-      <div id="nowManchester">Manchester, UK: <strong>--</strong></div>
-      <div id="nowJeddah">Jeddah, Saudi Arabia: <strong>--</strong></div>
-      <div id="nowHyderabad">Hyderabad, India: <strong>--</strong></div>
+
+      <div id="nowManchester">
+        Manchester, UK: <strong>--</strong>
+      </div>
+
+      <div id="nowJeddah">
+        Jeddah, Saudi Arabia: <strong>--</strong>
+      </div>
+
+      <div id="nowHyderabad">
+        Hyderabad, India: <strong>--</strong>
+      </div>
+
     </div>
+
   </div>
 
   <div class="scoreboard">
+
     <div class="scoreboard-inner">
 
       <div class="slot" data-unit="days">
+
         <svg class="ring" viewBox="0 0 100 100" aria-hidden="true">
           <circle class="ring-bg" cx="50" cy="50" r="42"></circle>
           <circle class="ring-progress" cx="50" cy="50" r="42"></circle>
         </svg>
+
         <div class="digit" id="days">0</div>
         <div class="tag">Days</div>
+
       </div>
 
       <div class="slot" data-unit="hours">
+
         <svg class="ring" viewBox="0 0 100 100" aria-hidden="true">
           <circle class="ring-bg" cx="50" cy="50" r="42"></circle>
           <circle class="ring-progress" cx="50" cy="50" r="42"></circle>
         </svg>
+
         <div class="digit" id="hours">0</div>
         <div class="tag">Hours</div>
+
       </div>
 
       <div class="slot" data-unit="minutes">
+
         <svg class="ring" viewBox="0 0 100 100" aria-hidden="true">
           <circle class="ring-bg" cx="50" cy="50" r="42"></circle>
           <circle class="ring-progress" cx="50" cy="50" r="42"></circle>
         </svg>
+
         <div class="digit" id="minutes">0</div>
         <div class="tag">Minutes</div>
+
       </div>
 
       <div class="slot" data-unit="seconds">
+
         <svg class="ring" viewBox="0 0 100 100" aria-hidden="true">
           <circle class="ring-bg" cx="50" cy="50" r="42"></circle>
           <circle class="ring-progress" cx="50" cy="50" r="42"></circle>
         </svg>
+
         <div class="digit" id="seconds">0</div>
         <div class="tag">Seconds</div>
+
       </div>
 
     </div>
+
   </div>
 
 </div>
@@ -323,16 +384,23 @@ h1{
 <script>
 
 /*
-  29 September 2026, 15:45 BST
-  BST = UTC+1
-  Therefore stored start time = 14:45 UTC
+  29 September 2026
+  15:45 BST = 14:45 UTC
 */
 const startTime = Date.UTC(2026,8,29,14,45,0);
 
-const userTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+/*
+  Device/browser time zone detection.
+*/
+const userTimeZone =
+  Intl.DateTimeFormat().resolvedOptions().timeZone;
+
 const CIRCUMFERENCE = 2 * Math.PI * 42;
 
+
+/* LIVE WORLD CLOCKS */
 function updateClock(id, label, tz){
+
   const now = new Date();
 
   const dateText = now.toLocaleDateString("en-GB", {
@@ -353,86 +421,198 @@ function updateClock(id, label, tz){
     `${label}: <strong>${dateText}, ${timeText}</strong>`;
 }
 
+
+/* RING CALCULATION RETAINED */
 function setRingProgress(unit, fraction){
-  const slot = document.querySelector(`.slot[data-unit="${unit}"]`);
+
+  const slot =
+    document.querySelector(`.slot[data-unit="${unit}"]`);
+
   if(!slot) return;
 
-  const ring = slot.querySelector(".ring-progress");
+  const ring =
+    slot.querySelector(".ring-progress");
+
   if(!ring) return;
 
-  const clamped = Math.max(0, Math.min(1, fraction));
-  ring.style.strokeDasharray = CIRCUMFERENCE;
-  ring.style.strokeDashoffset = CIRCUMFERENCE * (1 - clamped);
+  const clamped =
+    Math.max(0, Math.min(1, fraction));
+
+  ring.style.strokeDasharray =
+    CIRCUMFERENCE;
+
+  ring.style.strokeDashoffset =
+    CIRCUMFERENCE * (1 - clamped);
 }
 
+
+/* ELAPSED TIMER */
 function updateTimer(){
-  const diff = Date.now() - startTime;
-  const s = Math.floor(diff / 1000);
 
-  const totalDays = Math.floor(s / 86400);
-  const hours = Math.floor((s % 86400) / 3600);
-  const minutes = Math.floor((s % 3600) / 60);
-  const seconds = s % 60;
+  const diff =
+    Date.now() - startTime;
 
-  document.getElementById("days").textContent = totalDays;
-  document.getElementById("hours").textContent = hours;
-  document.getElementById("minutes").textContent = minutes;
-  document.getElementById("seconds").textContent = seconds;
+  const s =
+    Math.floor(diff / 1000);
 
-  const daysProgress = (totalDays % 365) / 365;
-  const hoursProgress = hours / 24;
-  const minutesProgress = minutes / 60;
-  const secondsProgress = seconds / 60;
+  const totalDays =
+    Math.floor(s / 86400);
 
-  setRingProgress("days", daysProgress);
-  setRingProgress("hours", hoursProgress);
-  setRingProgress("minutes", minutesProgress);
-  setRingProgress("seconds", secondsProgress);
+  const hours =
+    Math.floor((s % 86400) / 3600);
+
+  const minutes =
+    Math.floor((s % 3600) / 60);
+
+  const seconds =
+    s % 60;
+
+
+  document.getElementById("days").textContent =
+    totalDays;
+
+  document.getElementById("hours").textContent =
+    hours;
+
+  document.getElementById("minutes").textContent =
+    minutes;
+
+  document.getElementById("seconds").textContent =
+    seconds;
+
+
+  const daysProgress =
+    (totalDays % 365) / 365;
+
+  const hoursProgress =
+    hours / 24;
+
+  const minutesProgress =
+    minutes / 60;
+
+  const secondsProgress =
+    seconds / 60;
+
+
+  setRingProgress(
+    "days",
+    daysProgress
+  );
+
+  setRingProgress(
+    "hours",
+    hoursProgress
+  );
+
+  setRingProgress(
+    "minutes",
+    minutesProgress
+  );
+
+  setRingProgress(
+    "seconds",
+    secondsProgress
+  );
 }
 
+
+/* START DATE DISPLAY */
 function updateStartDisplay(){
-  const startDate = new Date(startTime);
 
-  const dateText = startDate.toLocaleDateString("en-GB", {
-    timeZone:userTimeZone,
-    day:"2-digit",
-    month:"long",
-    year:"numeric"
-  });
+  const startDate =
+    new Date(startTime);
 
-  const timeText = startDate.toLocaleTimeString("en-GB", {
-    timeZone:userTimeZone,
-    hour:"2-digit",
-    minute:"2-digit",
-    hour12:false
-  });
+  const dateText =
+    startDate.toLocaleDateString("en-GB", {
+      timeZone:userTimeZone,
+      day:"2-digit",
+      month:"long",
+      year:"numeric"
+    });
+
+  const timeText =
+    startDate.toLocaleTimeString("en-GB", {
+      timeZone:userTimeZone,
+      hour:"2-digit",
+      minute:"2-digit",
+      hour12:false
+    });
 
   const zoneLabel =
     userTimeZone === "Europe/London"
       ? "(BST)"
       : "(Local Time zone)";
 
-  document.getElementById("startDisplay").textContent =
+  document.getElementById(
+    "startDisplay"
+  ).textContent =
     `${dateText}, ${timeText} ${zoneLabel}`;
 }
 
+
+/* MAIN UPDATE */
 function tick(){
+
   updateStartDisplay();
-  updateClock("nowManchester", "Manchester, UK", "Europe/London");
-  updateClock("nowJeddah", "Jeddah, Saudi Arabia", "Asia/Riyadh");
-  updateClock("nowHyderabad", "Hyderabad, India", "Asia/Kolkata");
+
+  updateClock(
+    "nowManchester",
+    "Manchester, UK",
+    "Europe/London"
+  );
+
+  updateClock(
+    "nowJeddah",
+    "Jeddah, Saudi Arabia",
+    "Asia/Riyadh"
+  );
+
+  updateClock(
+    "nowHyderabad",
+    "Hyderabad, India",
+    "Asia/Kolkata"
+  );
+
   updateTimer();
 }
 
-tick();
-setInterval(tick,1000);
 
+tick();
+
+setInterval(
+  tick,
+  1000
+);
+
+
+/* PWA SERVICE WORKER */
 if("serviceWorker" in navigator){
-  window.addEventListener("load",()=>{
-    navigator.serviceWorker.register("./service-worker.js")
-      .then(()=>console.log("Service Worker registered"))
-      .catch(err=>console.error("Service Worker registration failed:",err));
-  });
+
+  window.addEventListener(
+    "load",
+    () => {
+
+      navigator.serviceWorker
+        .register("./service-worker.js")
+
+        .then(
+          () =>
+            console.log(
+              "Service Worker registered"
+            )
+        )
+
+        .catch(
+          err =>
+            console.error(
+              "Service Worker registration failed:",
+              err
+            )
+        );
+
+    }
+  );
+
 }
 
 </script>
