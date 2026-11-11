@@ -396,7 +396,7 @@ h1{
   29 September 2026
   15:45 BST = 14:45 UTC
 */
-const startTime = Date.UTC(2026,10,10,19,1,0);
+const startTime = Date.UTC(2026,10,11,21,25,0);
 
 /*
   Device/browser time zone detection.
@@ -546,11 +546,24 @@ function updateStartDisplay(){
       minute:"2-digit",
       hour12:false
     });
-
   const zoneLabel =
-    userTimeZone === "Europe/London"
-      ? "(GMT)"
-      : "(Local Time zone)";
+    "(" +
+    (
+      {
+        "Europe/London": "GMT",
+        "Asia/Riyadh": "AST",
+        "Asia/Kolkata": "IST"
+      }[userTimeZone] ||
+      new Intl.DateTimeFormat("en-GB", {
+        timeZone: userTimeZone,
+        timeZoneName: "short"
+      })
+      .formatToParts(startDate)
+      .find(part => part.type === "timeZoneName")
+      ?.value ||
+      userTimeZone
+    ) +
+    ")";
 
   document.getElementById(
     "startDisplay"
