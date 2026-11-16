@@ -404,6 +404,87 @@ h1{
   }
 
 }
+/* MINIMALIST PADLOCK DESIGN */
+
+.lock-frame{
+  width:100px;
+  height:100px;
+  margin:0 auto 30px;
+  border:1px solid rgba(255,255,255,0.18);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:rgba(255,255,255,0.85);
+}
+
+.lock-icon{
+  width:47px;
+  height:53px;
+  overflow:visible;
+}
+
+.lock-shackle{
+  transform-box:fill-box;
+  transform-origin:15% 90%;
+  transition:transform 500ms cubic-bezier(.22,1,.36,1);
+}
+
+.lock-frame.is-unlocked .lock-shackle{
+  transform:rotate(-35deg);
+}
+
+/* REFINED PASSWORD HEADING */
+
+.auth-card h2{
+  margin-bottom:28px;
+  font-size:1.3rem;
+  font-weight:400;
+  letter-spacing:1.5px;
+}
+
+/* VERY SUBTLE INCORRECT PASSWORD FEEDBACK */
+
+@keyframes lockShake{
+  0%,100%{transform:translateX(0);}
+  25%{transform:translateX(-3px);}
+  50%{transform:translateX(3px);}
+  75%{transform:translateX(-2px);}
+}
+
+.lock-frame.is-incorrect{
+  animation:lockShake 300ms ease;
+}
+
+/* MOBILE ADJUSTMENT */
+
+@media(max-width:768px){
+
+  .lock-frame{
+    width:90px;
+    height:90px;
+    margin-bottom:26px;
+  }
+
+  .lock-icon{
+    width:43px;
+    height:49px;
+  }
+
+}
+
+/* ACCESSIBILITY */
+
+@media(prefers-reduced-motion:reduce){
+
+  .lock-shackle{
+    transition:none;
+  }
+
+  .lock-frame.is-incorrect{
+    animation:none;
+  }
+
+}
 /* PASSWORD PROTECTION */
 .auth-gate{
   position:fixed;
@@ -508,6 +589,55 @@ body.auth-locked>.container{
   <form class="auth-card"
         id="authForm"
         autocomplete="off">
+
+<!-- MINIMALIST ANIMATED PADLOCK -->
+<div class="lock-frame" id="lockFrame" aria-hidden="true">
+
+  <svg class="lock-icon"
+       viewBox="0 0 64 72"
+       fill="none"
+       xmlns="http://www.w3.org/2000/svg">
+
+    <!-- Moving shackle -->
+    <g class="lock-shackle">
+      <path
+        d="M18 31V21C18 13.3 24.3 7 32 7C39.7 7 46 13.3 46 21V31"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+    </g>
+
+    <!-- Lock body -->
+    <rect
+      x="13"
+      y="30"
+      width="38"
+      height="32"
+      rx="3"
+      stroke="currentColor"
+      stroke-width="2"
+    />
+
+    <!-- Keyhole -->
+    <circle
+      cx="32"
+      cy="43"
+      r="2.5"
+      fill="currentColor"
+    />
+
+    <path
+      d="M32 46V51"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+    />
+
+  </svg>
+
+</div>
 
 <h2 id="authTitle">
   Enter Password
@@ -741,34 +871,51 @@ function unlockScreen(){
 
   const app = document.querySelector(".container");
 
-  gate.classList.add("auth-exiting");
+  const lockFrame = document.getElementById("lockFrame");
 
   const reducedMotion = window.matchMedia(
     "(prefers-reduced-motion: reduce)"
   ).matches;
 
+  /* STEP 1: OPEN THE PADLOCK */
+
+  lockFrame.classList.add("is-unlocked");
+
+  /* STEP 2: FADE OUT PASSWORD SCREEN */
+
   setTimeout(() => {
 
-    gate.hidden = true;
+    gate.classList.add("auth-exiting");
 
-    gate.classList.remove("auth-exiting");
+    /* STEP 3: REVEAL APPLICATION */
 
-    document.body.classList.remove(
-      "auth-locked"
-    );
+    setTimeout(() => {
 
-    app.classList.remove("app-reveal");
+      gate.hidden = true;
 
-    void app.offsetWidth;
+      gate.classList.remove("auth-exiting");
 
-    if(!reducedMotion){
-      app.classList.add("app-reveal");
-    }
+      document.body.classList.remove(
+        "auth-locked"
+      );
 
-  }, reducedMotion ? 0 : 350);
+      app.classList.remove("app-reveal");
+
+      void app.offsetWidth;
+
+      if(!reducedMotion){
+        app.classList.add("app-reveal");
+      }
+
+      /* RESET PADLOCK FOR NEXT LOGIN */
+
+      lockFrame.classList.remove("is-unlocked");
+
+    }, reducedMotion ? 0 : 350);
+
+  }, reducedMotion ? 0 : 550);
 
 }
-
 /* UPDATE LOCKOUT DISPLAY */
 function refreshAuth(){
 
@@ -901,12 +1048,22 @@ authForm.addEventListener(
 
         unlockScreen();
 
-      }else{
+}else{
 
-        const state = getAuthState();
+  /* GENTLE LOCK SHAKE */
 
-        const attempts =
-          state.attempts + 1;
+  const lockFrame = document.getElementById("lockFrame");
+
+  lockFrame.classList.remove("is-incorrect");
+
+  void lockFrame.offsetWidth;
+
+  lockFrame.classList.add("is-incorrect");
+
+  const state = getAuthState();
+
+  const attempts =
+    state.attempts + 1;
 
         if(attempts >= 3){
 
