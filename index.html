@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -70,7 +71,35 @@ h1{
   color:#fff;
 }
 
-/* HADITH BELOW TITLE */  .hadith{   width:min(720px,92vw);   margin:0 auto 12px;   padding:0 12px;   text-align:center;   font-family:var(--titleFont); }  /* REFINED SPACING */  h1{   margin-bottom:12px; }  .hadith-translation{   margin-bottom:2px; }  @media (max-width:768px){   .hadith{     margin-bottom:12px;   }    h1{     margin-bottom:12px;   } }  .hadith-translation{   font-size:0.95rem;   font-weight:400;   line-height:1.6;   color:var(--muted);   margin-bottom:5px; }  .hadith-reference{   font-size:0.8rem;   font-weight:400;   line-height:1.5;   color:var(--muted2); }  @media (max-width:768px){   .hadith{     width:100%;     margin-bottom:22px;     padding:0 8px;   }    .hadith-translation{     font-size:0.9rem;   }    .hadith-reference{     font-size:0.75rem;   } }  /* START DATE + WORLD CLOCKS */
+/* HADITH BELOW TITLE */
+.hadith{
+  width:min(720px,92vw);
+  margin:0 auto 12px;
+  padding:0 12px;
+  text-align:center;
+  font-family:var(--titleFont);
+}
+
+h1{
+  margin-bottom:12px;
+}
+
+.hadith-translation{
+  font-size:0.95rem;
+  font-weight:400;
+  line-height:1.6;
+  color:var(--muted);
+  margin-bottom:5px;
+}
+
+.hadith-reference{
+  font-size:0.8rem;
+  font-weight:400;
+  line-height:1.5;
+  color:var(--muted2);
+}
+
+/* START DATE + WORLD CLOCKS */
 .start-card{
   margin:0 auto 16px;
   width:min(720px,92vw);
@@ -124,12 +153,7 @@ h1{
   border-left:1px solid rgba(255,255,255,0.10);
 }
 
-/*
-  DISTRESSED NUMBERS
-
-  Mostly white with only a few soft,
-  irregular dark worn areas.
-*/
+/* DISTRESSED NUMBERS */
 .digit{
   font-size:clamp(3.5rem,9vw,5.8rem);
   font-weight:400;
@@ -139,7 +163,6 @@ h1{
   position:relative;
   z-index:2;
   letter-spacing:-2px;
-
   color:#fff;
 
   background:
@@ -150,28 +173,24 @@ h1{
       rgba(0,0,0,.18) 60%,
       transparent 72%
     ),
-
     radial-gradient(
       ellipse 18% 7% at 74% 24%,
       rgba(0,0,0,.62) 0%,
       rgba(0,0,0,.34) 42%,
       transparent 72%
     ),
-
     radial-gradient(
       ellipse 28% 6% at 62% 68%,
       rgba(0,0,0,.50) 0%,
       rgba(0,0,0,.24) 45%,
       transparent 75%
     ),
-
     radial-gradient(
       ellipse 12% 5% at 35% 38%,
       rgba(0,0,0,.45) 0%,
       rgba(0,0,0,.20) 45%,
       transparent 75%
     ),
-
     linear-gradient(
       90deg,
       #f7f7f7 0%,
@@ -197,7 +216,6 @@ h1{
   text-transform:uppercase;
 }
 
-/* Original ring structure retained */
 .slot svg.ring{
   display:none;
 }
@@ -221,7 +239,21 @@ h1{
 
   h1{
     font-size:1.4rem;
-    margin-bottom:20px;
+    margin-bottom:12px;
+  }
+
+  .hadith{
+    width:100%;
+    margin-bottom:22px;
+    padding:0 8px;
+  }
+
+  .hadith-translation{
+    font-size:0.9rem;
+  }
+
+  .hadith-reference{
+    font-size:0.75rem;
   }
 
   .start-card{
@@ -281,23 +313,154 @@ h1{
     font-size:0.88rem;
   }
 
-  .scoreboard-inner{
-    grid-template-columns:1fr 1fr;
-  }
-
   .digit{
     font-size:clamp(2.8rem,17vw,4rem);
   }
+}
+
+/* PASSWORD PROTECTION */
+.auth-gate{
+  position:fixed;
+  inset:0;
+  z-index:9999;
+  background:#000;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:24px;
+  font-family:var(--titleFont);
+  color:#fff;
+}
+
+.auth-card{
+  width:min(390px,100%);
+  text-align:center;
+}
+
+.auth-card h2{
+  font-size:1.5rem;
+  font-weight:400;
+  text-transform:uppercase;
+  letter-spacing:-.5px;
+  margin:0 0 28px;
+}
+
+.auth-card label{
+  display:block;
+  font-size:.95rem;
+  color:var(--muted);
+  margin-bottom:12px;
+}
+
+.auth-card input{
+  display:block;
+  width:100%;
+  padding:15px 16px;
+  background:var(--panel);
+  border:1px solid var(--panelBorder);
+  border-radius:0;
+  color:#fff;
+  font:inherit;
+  font-size:1rem;
+  text-align:center;
+  outline:none;
+}
+
+.auth-card input:focus{
+  border-color:rgba(255,255,255,.65);
+}
+
+.auth-card button{
+  width:100%;
+  margin-top:12px;
+  padding:14px;
+  background:#fff;
+  color:#000;
+  border:1px solid #fff;
+  border-radius:0;
+  font:inherit;
+  font-size:.95rem;
+  cursor:pointer;
+}
+
+.auth-card button:disabled{
+  opacity:.4;
+  cursor:not-allowed;
+}
+
+.auth-message{
+  min-height:1.6em;
+  margin-top:16px;
+  color:var(--muted);
+  font-size:.85rem;
+  line-height:1.5;
+}
+
+body.auth-locked{
+  overflow:hidden;
+}
+
+body.auth-locked>.container{
+  visibility:hidden;
+}
+
+[hidden]{
+  display:none!important;
 }
 </style>
 </head>
 
 <body>
 
+<!-- PASSWORD SCREEN -->
+<div class="auth-gate"
+     id="authGate"
+     role="dialog"
+     aria-modal="true"
+     aria-labelledby="authTitle">
+
+  <form class="auth-card"
+        id="authForm"
+        autocomplete="off">
+
+    <h2 id="authTitle">
+      The New Beginning
+    </h2>
+
+    <label for="authPassword">
+      Enter password
+    </label>
+
+    <input
+      id="authPassword"
+      type="password"
+      autocomplete="off"
+      autocapitalize="off"
+      spellcheck="false"
+      required
+      aria-describedby="authMessage"
+    >
+
+    <button id="authSubmit" type="submit">
+      Unlock
+    </button>
+
+    <div
+      class="auth-message"
+      id="authMessage"
+      aria-live="polite">
+    </div>
+
+  </form>
+</div>
+
+<!-- ORIGINAL APPLICATION -->
 <div class="container">
+
   <h1>The New Beginning</h1>
 
   <div class="hadith">
+
     <div class="hadith-translation">
       "Verily My Mercy overcomes My Anger"
     </div>
@@ -305,12 +468,14 @@ h1{
     <div class="hadith-reference">
       Bukhari 7404
     </div>
+
   </div>
 
   <div class="start-card">
 
     <div class="start">
-      Start Date and Time (Manchester, UK):<br>
+      Start Date and Time (Manchester, UK):
+      <br>
       <strong id="startDisplay">--</strong>
     </div>
 
@@ -337,51 +502,23 @@ h1{
     <div class="scoreboard-inner">
 
       <div class="slot" data-unit="days">
-
-        <svg class="ring" viewBox="0 0 100 100" aria-hidden="true">
-          <circle class="ring-bg" cx="50" cy="50" r="42"></circle>
-          <circle class="ring-progress" cx="50" cy="50" r="42"></circle>
-        </svg>
-
         <div class="digit" id="days">0</div>
         <div class="tag">Days</div>
-
       </div>
 
       <div class="slot" data-unit="hours">
-
-        <svg class="ring" viewBox="0 0 100 100" aria-hidden="true">
-          <circle class="ring-bg" cx="50" cy="50" r="42"></circle>
-          <circle class="ring-progress" cx="50" cy="50" r="42"></circle>
-        </svg>
-
         <div class="digit" id="hours">0</div>
         <div class="tag">Hours</div>
-
       </div>
 
       <div class="slot" data-unit="minutes">
-
-        <svg class="ring" viewBox="0 0 100 100" aria-hidden="true">
-          <circle class="ring-bg" cx="50" cy="50" r="42"></circle>
-          <circle class="ring-progress" cx="50" cy="50" r="42"></circle>
-        </svg>
-
         <div class="digit" id="minutes">0</div>
         <div class="tag">Minutes</div>
-
       </div>
 
       <div class="slot" data-unit="seconds">
-
-        <svg class="ring" viewBox="0 0 100 100" aria-hidden="true">
-          <circle class="ring-bg" cx="50" cy="50" r="42"></circle>
-          <circle class="ring-progress" cx="50" cy="50" r="42"></circle>
-        </svg>
-
         <div class="digit" id="seconds">0</div>
         <div class="tag">Seconds</div>
-
       </div>
 
     </div>
@@ -393,65 +530,431 @@ h1{
 <script>
 
 /*
-  29 September 2026
-  15:45 BST = 14:45 UTC
+  PASSWORD PROTECTION
+
+  PBKDF2-SHA256
+  310,000 iterations
+
+  The original password is not stored
+  as readable text in this file.
 */
-const startTime = Date.UTC(2026,10,15,23,40,0);
 
-/*
-  Device/browser time zone detection.
-*/
-const userTimeZone =
-  Intl.DateTimeFormat().resolvedOptions().timeZone;
+const AUTH_SALT = [
+  94,0,92,211,72,72,103,90,
+  207,175,168,116,19,121,161,213
+];
 
-const CIRCUMFERENCE = 2 * Math.PI * 42;
+const AUTH_HASH = [
+  98,112,124,209,65,117,131,20,
+  29,191,91,184,49,180,198,190,
+  92,243,188,230,207,42,142,234,
+  31,27,211,137,67,10,108,238
+];
+
+const AUTH_ITERATIONS = 310000;
+
+const AUTH_STATE_KEY =
+  "newBeginningAuthAttemptsV1";
+
+const AUTH_SESSION_KEY =
+  "newBeginningUnlockedV1";
+
+const AUTH_LOCK_MS =
+  15 * 60 * 1000;
+
+const gate =
+  document.getElementById("authGate");
+
+const authForm =
+  document.getElementById("authForm");
+
+const authInput =
+  document.getElementById("authPassword");
+
+const authButton =
+  document.getElementById("authSubmit");
+
+const authMessage =
+  document.getElementById("authMessage");
+
+let verifying = false;
+let wasUnlocked = false;
 
 
-/* LIVE WORLD CLOCKS */
-function updateClock(id, label, tz){
+/* REMEMBER INCORRECT ATTEMPTS */
+function getAuthState(){
 
-  const now = new Date();
+  try{
 
-  const dateText = now.toLocaleDateString("en-GB", {
-    timeZone:tz,
-    day:"2-digit",
-    month:"2-digit",
-    year:"numeric"
-  });
+    const data = JSON.parse(
+      localStorage.getItem(AUTH_STATE_KEY) || "{}"
+    );
 
-  const timeText = now.toLocaleTimeString("en-GB", {
-    timeZone:tz,
-    hour:"2-digit",
-    minute:"2-digit",
-    second:"2-digit"
-  });
+    return {
+      attempts:Number.isInteger(data.attempts)
+        ? Math.max(0,Math.min(3,data.attempts))
+        : 0,
 
-  document.getElementById(id).innerHTML =
-    `${label}: <strong>${dateText}, ${timeText}</strong>`;
+      until:Number.isFinite(data.until)
+        ? data.until
+        : 0
+    };
+
+  }catch{
+
+    return {
+      attempts:0,
+      until:0
+    };
+
+  }
 }
 
 
-/* RING CALCULATION RETAINED */
-function setRingProgress(unit, fraction){
+/* SAVE ATTEMPTS */
+function setAuthState(state){
 
-  const slot =
-    document.querySelector(`.slot[data-unit="${unit}"]`);
+  localStorage.setItem(
+    AUTH_STATE_KEY,
+    JSON.stringify(state)
+  );
 
-  if(!slot) return;
+}
 
-  const ring =
-    slot.querySelector(".ring-progress");
 
-  if(!ring) return;
+/* LOCK APPLICATION */
+function lockScreen(){
 
-  const clamped =
-    Math.max(0, Math.min(1, fraction));
+  wasUnlocked = false;
 
-  ring.style.strokeDasharray =
-    CIRCUMFERENCE;
+  sessionStorage.removeItem(
+    AUTH_SESSION_KEY
+  );
 
-  ring.style.strokeDashoffset =
-    CIRCUMFERENCE * (1 - clamped);
+  document.body.classList.add(
+    "auth-locked"
+  );
+
+  gate.hidden = false;
+
+  authInput.value = "";
+
+  refreshAuth();
+
+}
+
+
+/* UNLOCK APPLICATION */
+function unlockScreen(){
+
+  wasUnlocked = true;
+
+  sessionStorage.setItem(
+    AUTH_SESSION_KEY,
+    "1"
+  );
+
+  document.body.classList.remove(
+    "auth-locked"
+  );
+
+  gate.hidden = true;
+
+  authInput.value = "";
+
+  authMessage.textContent = "";
+
+}
+
+
+/* UPDATE LOCKOUT DISPLAY */
+function refreshAuth(){
+
+  if(wasUnlocked) return;
+
+  const state = getAuthState();
+
+  if(state.until > Date.now()){
+
+    const remaining = Math.ceil(
+      (state.until-Date.now())/1000
+    );
+
+    const mins = String(
+      Math.floor(remaining/60)
+    ).padStart(2,"0");
+
+    const secs = String(
+      remaining%60
+    ).padStart(2,"0");
+
+    authMessage.textContent =
+      `Too many incorrect attempts. Try again in ${mins}:${secs}.`;
+
+    authInput.disabled = true;
+    authButton.disabled = true;
+
+  }else{
+
+    if(state.until){
+
+      setAuthState({
+        attempts:0,
+        until:0
+      });
+
+    }
+
+    authInput.disabled = verifying;
+    authButton.disabled = verifying;
+
+    if(state.until){
+
+      authMessage.textContent =
+        "You can try again.";
+
+    }
+
+  }
+
+}
+
+
+/* CRYPTOGRAPHIC PASSWORD VERIFICATION */
+async function verifyPassword(value){
+
+  if(!crypto.subtle){
+
+    throw new Error(
+      "Secure browser context required"
+    );
+
+  }
+
+  const key = await crypto.subtle.importKey(
+    "raw",
+    new TextEncoder().encode(value),
+    "PBKDF2",
+    false,
+    ["deriveBits"]
+  );
+
+  const result = new Uint8Array(
+    await crypto.subtle.deriveBits(
+      {
+        name:"PBKDF2",
+        salt:new Uint8Array(AUTH_SALT),
+        iterations:AUTH_ITERATIONS,
+        hash:"SHA-256"
+      },
+      key,
+      256
+    )
+  );
+
+  let difference = 0;
+
+  for(let i=0;i<result.length;i++){
+
+    difference |=
+      result[i] ^ AUTH_HASH[i];
+
+  }
+
+  return difference === 0;
+
+}
+
+
+/* LOGIN PROCESS */
+authForm.addEventListener(
+  "submit",
+  async event => {
+
+    event.preventDefault();
+
+    if(
+      verifying ||
+      getAuthState().until > Date.now()
+    ){
+      return;
+    }
+
+    verifying = true;
+
+    refreshAuth();
+
+    const candidate = authInput.value;
+
+    authInput.value = "";
+
+    try{
+
+      if(await verifyPassword(candidate)){
+
+        setAuthState({
+          attempts:0,
+          until:0
+        });
+
+        unlockScreen();
+
+      }else{
+
+        const state = getAuthState();
+
+        const attempts =
+          state.attempts + 1;
+
+        if(attempts >= 3){
+
+          setAuthState({
+            attempts:3,
+            until:Date.now()+AUTH_LOCK_MS
+          });
+
+        }else{
+
+          setAuthState({
+            attempts,
+            until:0
+          });
+
+          authMessage.textContent =
+            `Incorrect password. ${3-attempts} ${3-attempts===1?"attempt":"attempts"} remaining.`;
+
+        }
+
+      }
+
+    }catch{
+
+      authMessage.textContent =
+        "Password verification requires HTTPS or localhost.";
+
+    }finally{
+
+      verifying = false;
+
+      refreshAuth();
+
+      if(
+        !authInput.disabled &&
+        !wasUnlocked
+      ){
+
+        authInput.focus();
+
+      }
+
+    }
+
+  }
+);
+
+
+/* LOCK WHEN LEAVING APPLICATION */
+document.addEventListener(
+  "visibilitychange",
+  () => {
+
+    if(
+      document.hidden &&
+      wasUnlocked
+    ){
+
+      lockScreen();
+
+    }
+
+  }
+);
+
+
+/* CLEAR UNLOCKED SESSION ON EXIT */
+window.addEventListener(
+  "pagehide",
+  () => {
+
+    sessionStorage.removeItem(
+      AUTH_SESSION_KEY
+    );
+
+  }
+);
+
+
+/* REQUIRE PASSWORD ON REOPEN */
+window.addEventListener(
+  "pageshow",
+  () => {
+
+    if(!wasUnlocked){
+
+      lockScreen();
+
+    }
+
+  }
+);
+
+
+/* INITIAL PASSWORD SCREEN */
+document.body.classList.add(
+  "auth-locked"
+);
+
+lockScreen();
+
+setInterval(
+  refreshAuth,
+  1000
+);
+
+
+/*
+  ORIGINAL TIMER
+  15 November 2026
+  23:40 UTC
+*/
+const startTime =
+  Date.UTC(2026,10,15,23,40,0);
+
+
+/* DEVICE TIME ZONE */
+const userTimeZone =
+  Intl.DateTimeFormat()
+    .resolvedOptions().timeZone;
+
+
+/* WORLD CLOCKS */
+function updateClock(id,label,tz){
+
+  const now = new Date();
+
+  const dateText = now.toLocaleDateString(
+    "en-GB",
+    {
+      timeZone:tz,
+      day:"2-digit",
+      month:"2-digit",
+      year:"numeric"
+    }
+  );
+
+  const timeText = now.toLocaleTimeString(
+    "en-GB",
+    {
+      timeZone:tz,
+      hour:"2-digit",
+      minute:"2-digit",
+      second:"2-digit"
+    }
+  );
+
+  document.getElementById(id).innerHTML =
+    `${label}: <strong>${dateText}, ${timeText}</strong>`;
+
 }
 
 
@@ -459,69 +962,39 @@ function setRingProgress(unit, fraction){
 function updateTimer(){
 
   const diff =
-    Date.now() - startTime;
+    Date.now()-startTime;
 
   const s =
-    Math.floor(diff / 1000);
+    Math.floor(diff/1000);
 
   const totalDays =
-    Math.floor(s / 86400);
+    Math.floor(s/86400);
 
   const hours =
-    Math.floor((s % 86400) / 3600);
+    Math.floor((s%86400)/3600);
 
   const minutes =
-    Math.floor((s % 3600) / 60);
+    Math.floor((s%3600)/60);
 
   const seconds =
-    s % 60;
+    s%60;
 
+  document.getElementById(
+    "days"
+  ).textContent = totalDays;
 
-  document.getElementById("days").textContent =
-    totalDays;
+  document.getElementById(
+    "hours"
+  ).textContent = hours;
 
-  document.getElementById("hours").textContent =
-    hours;
+  document.getElementById(
+    "minutes"
+  ).textContent = minutes;
 
-  document.getElementById("minutes").textContent =
-    minutes;
+  document.getElementById(
+    "seconds"
+  ).textContent = seconds;
 
-  document.getElementById("seconds").textContent =
-    seconds;
-
-
-  const daysProgress =
-    (totalDays % 365) / 365;
-
-  const hoursProgress =
-    hours / 24;
-
-  const minutesProgress =
-    minutes / 60;
-
-  const secondsProgress =
-    seconds / 60;
-
-
-  setRingProgress(
-    "days",
-    daysProgress
-  );
-
-  setRingProgress(
-    "hours",
-    hoursProgress
-  );
-
-  setRingProgress(
-    "minutes",
-    minutesProgress
-  );
-
-  setRingProgress(
-    "seconds",
-    secondsProgress
-  );
 }
 
 
@@ -532,35 +1005,49 @@ function updateStartDisplay(){
     new Date(startTime);
 
   const dateText =
-    startDate.toLocaleDateString("en-GB", {
-      timeZone:userTimeZone,
-      day:"2-digit",
-      month:"long",
-      year:"numeric"
-    });
+    startDate.toLocaleDateString(
+      "en-GB",
+      {
+        timeZone:userTimeZone,
+        day:"2-digit",
+        month:"long",
+        year:"numeric"
+      }
+    );
 
   const timeText =
-    startDate.toLocaleTimeString("en-GB", {
-      timeZone:userTimeZone,
-      hour:"2-digit",
-      minute:"2-digit",
-      hour12:false
-    });
+    startDate.toLocaleTimeString(
+      "en-GB",
+      {
+        timeZone:userTimeZone,
+        hour:"2-digit",
+        minute:"2-digit",
+        hour12:false
+      }
+    );
+
   const zoneLabel =
     "(" +
     (
       {
-        "Europe/London": "GMT",
-        "Asia/Riyadh": "AST",
-        "Asia/Kolkata": "IST"
+        "Europe/London":"GMT",
+        "Asia/Riyadh":"AST",
+        "Asia/Kolkata":"IST"
       }[userTimeZone] ||
-      new Intl.DateTimeFormat("en-GB", {
-        timeZone: userTimeZone,
-        timeZoneName: "short"
-      })
+
+      new Intl.DateTimeFormat(
+        "en-GB",
+        {
+          timeZone:userTimeZone,
+          timeZoneName:"short"
+        }
+      )
       .formatToParts(startDate)
-      .find(part => part.type === "timeZoneName")
+      .find(
+        part => part.type==="timeZoneName"
+      )
       ?.value ||
+
       userTimeZone
     ) +
     ")";
@@ -569,6 +1056,7 @@ function updateStartDisplay(){
     "startDisplay"
   ).textContent =
     `${dateText}, ${timeText} ${zoneLabel}`;
+
 }
 
 
@@ -596,8 +1084,8 @@ function tick(){
   );
 
   updateTimer();
-}
 
+}
 
 tick();
 
@@ -618,18 +1106,16 @@ if("serviceWorker" in navigator){
         .register("./service-worker.js")
 
         .then(
-          () =>
-            console.log(
-              "Service Worker registered"
-            )
+          () => console.log(
+            "Service Worker registered"
+          )
         )
 
         .catch(
-          err =>
-            console.error(
-              "Service Worker registration failed:",
-              err
-            )
+          err => console.error(
+            "Service Worker registration failed:",
+            err
+          )
         );
 
     }
